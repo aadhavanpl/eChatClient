@@ -115,7 +115,7 @@
 .chat-wrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 20px;
 	width: 100%;
 
 	overflow: scroll;
@@ -125,19 +125,66 @@
 	padding-right: 20px;
 }
 
+.right-container {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.right-wrapper,
+.left-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
+	font-size: 11px;
+}
+
+.right-wrapper span {
+	align-self: flex-end;
+	margin-right: 51px;
+}
+
+.left-wrapper {
+}
+
+.left-wrapper span {
+	margin-left: 51px;
+}
+
 .right {
 	display: flex;
 	justify-content: flex-end;
-	margin-left: 0 auto;
-}
-
-.middle {
-	justify-content: center;
 }
 
 .left {
 	display: flex;
 	justify-content: flex-start;
+}
+
+.left,
+.right {
+	gap: 10px;
+	align-items: flex-end;
+}
+
+.message-box {
+	display: flex;
+	padding: 10px 16px;
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	max-width: 450px;
+
+	font-size: 14px;
+}
+
+.left img,
+.right img {
+	height: 36px;
+	width: 36px;
+}
+
+.middle {
+	justify-content: center;
 }
 
 .send-wrapper {
@@ -154,6 +201,7 @@
 	border: none;
 	width: 669px;
 	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .send-wrapper input:focus {

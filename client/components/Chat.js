@@ -76,14 +76,26 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 						{messageList.map((item, index) => (
 							<div key={index}>
 								{item.userName === userName ? (
-									<div className={styles['right']}>
-										<img src={item.avatar} />
-										{item.message}
+									<div className={styles['right-container']}>
+										<div className={styles['right-wrapper']}>
+											<div className={styles['right']}>
+												<div className={styles['message-box']}>{item.message}</div>
+												<img src={item.avatar} />
+											</div>
+											<span>
+												{item.userName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{item.time}
+											</span>
+										</div>
 									</div>
 								) : (
-									<div className={styles['left']}>
-										<img src={item.avatar} />
-										{item.message}
+									<div className={styles['left-wrapper']}>
+										<div className={styles['left']}>
+											<img src={item.avatar} />
+											<div className={styles['message-box']}>{item.message}</div>
+										</div>
+										<span>
+											{item.userName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{item.time}
+										</span>
 									</div>
 								)}
 							</div>
