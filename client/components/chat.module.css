@@ -1,0 +1,67 @@
+.container {
+	width: 846px;
+	height: 534px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	background-color: #fff;
+	padding: 20px 5px 20px 20px;
+	border-radius: 15px;
+}
+
+.chat-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+
+	overflow: scroll;
+	overflow-x: hidden;
+
+	height: 430px;
+	padding-right: 20px;
+}
+
+.right {
+	display: flex;
+	justify-content: flex-end;
+	margin-left: 0 auto;
+}
+
+.middle {
+	justify-content: center;
+}
+
+.left {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.send-wrapper {
+	display: flex;
+	gap: 20px;
+	width: 100%;
+}
+
+.send-wrapper input {
+	background-color: #eaecf5;
+
+	border-radius: 50px;
+
+	border: none;
+	width: 669px;
+	padding-left: 20px;
+}
+
+.send-wrapper input:focus {
+	outline: none;
+}
+
+.send-wrapper input::placeholder {
+	font-family: 'Poppins';
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 20px;
+	color: #777777;
+}
