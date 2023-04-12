@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './chat.module.css'
 
-export default function Chat() {
+export default function Chat({ socket, userName, room }) {
+	const [currentMessage, setCurrentMessage] = useState('')
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
-			sendData()
+			sendMessage()
 		}
 	}
 
-	const sendData = () => {
-		if (text !== '') {
-			const ans = to_Encrypt(text)
-			socket.emit('chat', ans)
-			setText('')
+	const sendMessage = async () => {
+		if (currentMessage !== '') {
+			const messageData = {
+				room: room,
+				userName: userName,
+				message: currentMessage,
+				time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
+			}
+			await socket.emit('sendMessage', messageData)
 		}
 	}
 	return (
@@ -43,11 +48,11 @@ export default function Chat() {
 			<div className={styles['send-wrapper']}>
 				<input
 					placeholder='Type message here'
-					value={text}
-					onChange={(e) => setText(e.target.value)}
+					value={currentMessage}
+					onChange={(e) => setCurrentMessage(e.target.value)}
 					onKeyDown={handleKeyDown}
 				/>
-				<img src='/send.svg' onClick={sendData} />
+				<img src='/send.svg' onClick={sendMessage} />
 			</div>
 		</div>
 	)
