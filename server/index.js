@@ -24,8 +24,18 @@ io.on('connection', (socket) => {
 		console.log(
 			`User with ID: ${socket.id} and Username: ${data.userName} joined room: ${data.room}`
 		)
-		if (userList[data.room] !== undefined) userList[data.room].push({ userName: data.userName })
-		else userList[data.room] = [{ userName: data.userName }]
+		if (userList[data.room] !== undefined)
+			userList[data.room].push({
+				userName: data.userName,
+				avatar: `https://source.boringavatars.com/beam/120/${data.userName}?colors=D9DC50,D1BAC4,CB9A4C,B15357,902876`,
+			})
+		else
+			userList[data.room] = [
+				{
+					userName: data.userName,
+					avatar: `https://source.boringavatars.com/beam/120/${data.userName}?colors=D9DC50,D1BAC4,CB9A4C,B15357,902876`,
+				},
+			]
 		io.in(data.room).emit('userList', userList[data.room])
 	})
 
