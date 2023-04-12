@@ -1,4 +1,101 @@
 .container {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+
+	background: linear-gradient(107.13deg, #dedede 0%, rgba(211, 211, 211, 0.1) 100%);
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
+	border-radius: 30px;
+
+	width: fit-content;
+	height: fit-content;
+}
+
+.participants-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	height: 624px;
+	width: 290px;
+	background-color: #fff;
+	border-radius: 15px;
+
+	padding: 20px;
+
+	box-sizing: border-box;
+}
+
+.participants-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.participants-wrapper h3 {
+	font-family: 'Poppins';
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	color: #000000;
+}
+
+.participants-content {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.participants-user-wrapper {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+}
+
+.participants-user-wrapper img {
+	height: 40px;
+	width: 40px;
+}
+
+.participants-logout {
+	width: 100%;
+	justify-self: flex-end;
+	align-self: flex-end;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.room-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 20px;
+
+	width: 844px;
+
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 30px;
+	color: #000;
+	border-radius: 15px;
+	background-color: #fff;
+}
+
+.chat {
+	height: 534px;
+	background-color: #fff;
+	border-radius: 15px;
+}
+
+.chat-container {
 	width: 846px;
 	height: 534px;
 	display: flex;
