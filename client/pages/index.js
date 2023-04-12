@@ -1,14 +1,13 @@
 import Head from 'next/head'
 import Login from '@/components/Login'
-import { SocketContext } from 'context/socket'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 
 import styles from '../styles/index.module.css'
 import Chat from '@/components/Chat'
 
-export default function Home() {
-	const socket = useContext(SocketContext)
+import { socket } from '../context/socket'
 
+export default function Home() {
 	const [userName, setUserName] = useState('')
 	const [room, setRoom] = useState('')
 	const [loggedIn, setLoggedIn] = useState(false)
