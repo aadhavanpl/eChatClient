@@ -118,11 +118,16 @@
 	gap: 20px;
 	width: 100%;
 
-	overflow: scroll;
-	overflow-x: hidden;
-
 	height: 430px;
-	padding-right: 20px;
+	/* padding-right: 20px; */
+}
+
+.scroller {
+	height: 430px;
+}
+
+.spacing {
+	margin-right: 20px;
 }
 
 .right-container {
