@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import styles from './chat.module.css'
 import { useRouter } from 'next/router'
 
-export default function Chat({ socket, userName, room }) {
+export default function Chat({ socket, userName, room, setLoggedIn }) {
 	const [currentMessage, setCurrentMessage] = useState('')
+	const [messageList, setMessageList] = useState([])
+	const [userList, setUserList] = useState([])
+
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
 			sendMessage()
@@ -24,54 +27,44 @@ export default function Chat({ socket, userName, room }) {
 
 	useEffect(() => {
 		socket.on('recieveMessage', (data) => {
+			setMessageList((list) => [...list, data])
+		})
+		socket.on('userList', (data) => {
+			setUserList(data)
 			console.log(data)
 		})
 	}, [socket])
 
-	const data = [
-		{
-			icon: '/user.svg',
-			name: 'Lorem ipsum',
-		},
-		{
-			icon: '/user.svg',
-			name: 'Lorem ipsum',
-		},
-		{
-			icon: '/user.svg',
-			name: 'Lorem ipsum',
-		},
-		{
-			icon: '/user.svg',
-			name: 'Lorem ipsum',
-		},
-		{
-			icon: '/user.svg',
-			name: 'Lorem ipsum',
-		},
-		{
-			icon: '/user.svg',
-			name: 'Lorem ipsum',
-		},
-	]
-
-	const router = useRouter()
-
 	function handleLogout() {
-		router.push('/')
+		const logoutData = {
+			room: room,
+			userName: userName,
+		}
+		socket.emit('logout', logoutData)
+		setLoggedIn(false)
 	}
 
 	return (
 		<div className={styles['container']}>
 			<div className={styles['participants-container']}>
 				<div className={styles['participants-wrapper']}>
-					<h3>Participants ({data.length}):</h3>
+					<h3>Participants ({userList.length}):</h3>
 					<div className={styles['participants-content']}>
-						{data.length > 0 ? (
+						{/* {data.length > 0 ? (
 							data.map((item, index) => (
 								<div key={index} className={styles['participants-user-wrapper']}>
 									<img src={item.icon} />
 									<span>{item.name}</span>
+								</div>
+							))
+						) : (
+							<></>
+						)} */}
+						{userList.length > 0 ? (
+							userList.map((item, index) => (
+								<div key={index} className={styles['participants-user-wrapper']}>
+									<img src='/user.svg' />
+									<span>{item.userName}</span>
 								</div>
 							))
 						) : (
@@ -89,26 +82,35 @@ export default function Chat({ socket, userName, room }) {
 				{/* <div className={styles['chat']}> */}
 				<div className={styles['chat-container']}>
 					<div className={styles['chat-wrapper']}>
+						{messageList.map((item, index) => (
+							<div key={index}>
+								{item.userName === userName ? (
+									<div className={styles['right']}>{item.message}</div>
+								) : (
+									<div className={styles['left']}>{item.message}</div>
+								)}
+							</div>
+						))}
 						{/* {messages.map((item, index) => (
-					<div key={index}>
-						{console.log(item)}
-						{item.text.startsWith('Welcome') || item.text.includes('has joined the chat') ? (
-							<div className={styles['middle']}>{item.text}</div>
-						) : item.username !== usernamee ? (
-							<div className={styles['left']}>
-								<img src={item.avatar} />
-								{item.text}
-								{console.log(item.text.startsWith('Welcome'))}
-								{console.log(item.text.includes('has joined the chat'))}
+							<div key={index}>
+								{console.log(item)}
+								{item.text.startsWith('Welcome') || item.text.includes('has joined the chat') ? (
+									<div className={styles['middle']}>{item.text}</div>
+								) : item.username !== usernamee ? (
+									<div className={styles['left']}>
+										<img src={item.avatar} />
+										{item.text}
+										{console.log(item.text.startsWith('Welcome'))}
+										{console.log(item.text.includes('has joined the chat'))}
+									</div>
+								) : (
+									<div className={styles['right']}>
+										<img src={item.avatar} />
+										{item.text}
+									</div>
+								)}
 							</div>
-						) : (
-							<div className={styles['right']}>
-								<img src={item.avatar} />
-								{item.text}
-							</div>
-						)}
-					</div>
-				))} */}
+						))} */}
 						{/* <div ref={messagesEndRef} /> */}
 					</div>
 					<div className={styles['send-wrapper']}>

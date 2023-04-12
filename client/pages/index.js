@@ -30,7 +30,7 @@ export default function Home() {
 						setLoggedIn={setLoggedIn}
 					/>
 				) : (
-					<Chat socket={socket} userName={userName} room={room} />
+					<Chat socket={socket} userName={userName} room={room} setLoggedIn={setLoggedIn} />
 				)}
 			</div>
 			<span className={styles['logo']}>#eTwoE</span>
