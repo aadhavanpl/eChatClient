@@ -63,6 +63,7 @@
 	width: 100%;
 	justify-self: flex-end;
 	align-self: flex-end;
+	cursor: pointer;
 }
 
 .wrapper {
@@ -87,6 +88,10 @@
 	color: #000;
 	border-radius: 15px;
 	background-color: #fff;
+}
+
+.room-wrapper img {
+	cursor: pointer;
 }
 
 .chat {
@@ -161,4 +166,8 @@
 	font-size: 13px;
 	line-height: 20px;
 	color: #777777;
+}
+
+.send-wrapper img {
+	cursor: pointer;
 }
