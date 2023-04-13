@@ -36,6 +36,10 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 			setUserList(data)
 			console.log(data)
 		})
+		socket.on('notifications', (data) => {
+			setMessageList((list) => [...list, data])
+		})
+		console.log(messageList)
 	}, [socket])
 
 	function handleLogout() {
@@ -95,6 +99,8 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 												</span>
 											</div>
 										</div>
+									) : item.userName === 'server' ? (
+										<div className={styles['middle']}>{item.message}</div>
 									) : (
 										<div className={styles['left-wrapper']}>
 											<div className={styles['left']}>

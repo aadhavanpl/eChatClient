@@ -35,8 +35,7 @@
 }
 
 .participants-wrapper h3 {
-	font-family: 'Poppins';
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 16px;
 	line-height: 24px;
 	color: #000000;
@@ -140,7 +139,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-
+	padding: 5px;
 	font-size: 11px;
 }
 
@@ -150,6 +149,7 @@
 }
 
 .left-wrapper {
+	padding: 5px;
 }
 
 .left-wrapper span {
@@ -189,7 +189,12 @@
 }
 
 .middle {
+	padding: 8px;
+	display: flex;
 	justify-content: center;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.4);
+	font-size: 14px;
 }
 
 .send-wrapper {

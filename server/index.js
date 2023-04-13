@@ -37,6 +37,13 @@ io.on('connection', (socket) => {
 				},
 			]
 		io.in(data.room).emit('userList', userList[data.room])
+
+		const notification = {
+			userName: 'server',
+			room: data.room,
+			message: `${data.userName} has joined the room`,
+		}
+		io.in(data.room).emit('notifications', notification)
 	})
 
 	socket.on('sendMessage', (data) => {
@@ -56,8 +63,14 @@ io.on('connection', (socket) => {
 			}
 		}
 		userList[data.room].splice(index, 1)
-		console.log(userList[data.room])
 		io.in(data.room).emit('userList', userList[data.room])
+
+		const notification = {
+			userName: 'server',
+			room: data.room,
+			message: `${data.userName} has logged out of the room`,
+		}
+		io.in(data.room).emit('notifications', notification)
 	})
 })
 
