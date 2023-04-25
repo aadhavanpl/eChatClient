@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './chat.module.css'
 import ScrollToBottom from 'react-scroll-to-bottom'
-// import { useRouter } from 'next/router'
+import { encryptData, decryptData } from './aes'
 
 export default function Chat({ socket, userName, room, setLoggedIn }) {
 	const [currentMessage, setCurrentMessage] = useState('')
@@ -16,10 +16,13 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 
 	const sendMessage = async () => {
 		if (currentMessage !== '') {
+			//encrypt message
+			const encryptedMessage = encryptData(currentMessage)
+
 			const messageData = {
 				room: room,
 				userName: userName,
-				message: currentMessage,
+				message: encryptedMessage,
 				avatar: `https://source.boringavatars.com/beam/120/${userName}?colors=D9DC50,D1BAC4,CB9A4C,B15357,902876`,
 				time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes(),
 			}
@@ -30,6 +33,8 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 
 	useEffect(() => {
 		socket.on('recieveMessage', (data) => {
+			const decryptedMessage = decryptData(data.message)
+			data.message = decryptedMessage
 			setMessageList((list) => [...list, data])
 		})
 		socket.on('userList', (data) => {
