@@ -33,6 +33,7 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 
 	useEffect(() => {
 		socket.on('recieveMessage', (data) => {
+			data.encrypted = data.message
 			const decryptedMessage = decryptData(data.message)
 			data.message = decryptedMessage
 			setMessageList((list) => [...list, data])
@@ -96,7 +97,10 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 										<div className={styles['right-container']}>
 											<div className={styles['right-wrapper']}>
 												<div className={styles['right']}>
-													<div className={styles['message-box']}>{item.message}</div>
+													<div className={styles['message-box']} style={{ alignItems: 'flex-end' }}>
+														{item.message}
+														<div>{item.encrypted}</div>
+													</div>
 													<img src={item.avatar} />
 												</div>
 												<span>
@@ -110,7 +114,10 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 										<div className={styles['left-wrapper']}>
 											<div className={styles['left']}>
 												<img src={item.avatar} />
-												<div className={styles['message-box']}>{item.message}</div>
+												<div className={styles['message-box']}>
+													{item.message}
+													<div>{item.encrypted}</div>
+												</div>
 											</div>
 											<span>
 												{item.userName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{item.time}

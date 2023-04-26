@@ -174,12 +174,23 @@
 
 .message-box {
 	display: flex;
+	flex-direction: column;
 	padding: 10px 16px;
 	background: rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	max-width: 450px;
 
 	font-size: 14px;
+}
+
+.message-box div {
+	/* padding-left: 16px; */
+	font-size: 10px;
+	color: rgba(0, 0, 0, 0.4);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 418px;
 }
 
 .left img,
