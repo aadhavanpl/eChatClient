@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import styles from './chat.module.css'
 import ScrollToBottom from 'react-scroll-to-bottom'
 import { encryptData, decryptData } from './aes'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+
+import styles from './chat.module.css'
 
 export default function Chat({ socket, userName, room, setLoggedIn }) {
 	const [currentMessage, setCurrentMessage] = useState('')
@@ -80,12 +82,12 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 			<div className={styles['wrapper']}>
 				<div className={styles['room-wrapper']}>
 					Room: {room}
-					<img
-						src='/share.svg'
-						onClick={() => {
-							navigator.clipboard.writeText(`http://localhost:3000/${room}`)
-						}}
-					/>
+					<CopyToClipboard
+						text={`Join ${userName}'s eChat🔐 Room\nRoom code: ${room}`}
+						// onCopy={() => setValue(`Join ${userName}'s eChat Room | Room code: ${room}`)}
+					>
+						<img src='/share.svg' />
+					</CopyToClipboard>
 				</div>
 				{/* <div className={styles['chat']}> */}
 				<div className={styles['chat-container']}>
