@@ -2,10 +2,17 @@ const express = require('express')
 const http = require('http')
 const cors = require('cors')
 const { Server } = require('socket.io')
+const https = require('https')
+const fs = require('fs')
+
+const options = {
+	key: fs.readFileSync('keys/key.pem'),
+	cert: fs.readFileSync('keys/server.crt'),
+}
 
 const app = express()
 app.use(cors())
-const server = http.createServer(app)
+const server = https.createServer(options, app)
 
 const userList = {}
 
