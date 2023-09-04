@@ -3,6 +3,7 @@ import styles from './login.module.css'
 export default function Login({ socket, userName, setUserName, setLoggedIn, room, setRoom }) {
 	const joinRoom = () => {
 		if (userName !== '' && room !== '') {
+			console.log(socket)
 			socket.emit('joinRoom', { userName, room })
 			setLoggedIn(true)
 		}
