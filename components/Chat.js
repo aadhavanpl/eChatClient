@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
 import { encryptData, decryptData } from './aes'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { Router, useRouter } from 'next/router';
 
 import styles from './chat.module.css'
 
@@ -9,6 +10,8 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 	const [currentMessage, setCurrentMessage] = useState('')
 	const [messageList, setMessageList] = useState([])
 	const [userList, setUserList] = useState([])
+
+	const router = useRouter();
 
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
@@ -56,6 +59,7 @@ export default function Chat({ socket, userName, room, setLoggedIn }) {
 			userName: userName,
 		}
 		socket.emit('logout', logoutData)
+		router.reload()
 		setLoggedIn(false)
 	}
 
