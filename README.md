@@ -34,9 +34,9 @@ Encrypted chat room built using WebSockets.
 
 ## Interface
 
-![alt text](https://github.com/aadhavanpl/eChat/blob/master/client/public/login.png)
+![alt text](https://github.com/aadhavanpl/eChatClient/blob/master/public/login.png)
 
-![alt text](https://github.com/aadhavanpl/eChat/blob/master/client/public/chat.png)
+![alt text](https://github.com/aadhavanpl/eChatClient/blob/master/public/chat.png)
 
 Designed using Figma
 https://www.figma.com/file/dq6XOyPZAURNaK16wGFtNt/%2FeChat*?node-id=0%3A1&t=JZKNSxdO2c59Nfkk-1
